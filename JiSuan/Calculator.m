@@ -47,7 +47,12 @@
 
 + (NSString *) calculate: (NSString *)s
 {
-    return [NSString stringWithFormat:@"%f", [Calculator evaluate: [Parse tokenizeAndParse:s]]];
+    NSDictionary * tree = [Parse tokenizeAndParse:s];
+    if (tree)
+    {
+        return [NSString stringWithFormat:@"%f", [Calculator evaluate: tree]];
+    }
+    return nil;
 }
 
 + (double) evaluate: (NSDictionary *)e
