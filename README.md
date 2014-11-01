@@ -57,7 +57,7 @@ Selected text | output
 |Negate|-a|4|
 
 ### Developers
-@Shadowyyyy   (Ruan, Zhen-jie)
+@Shadowyyyy   (Ruan, Zhen-jie)  
 @B1ueSky      (Luo, Tian-you)
 
 ###At last, thanks for all your STARs!
