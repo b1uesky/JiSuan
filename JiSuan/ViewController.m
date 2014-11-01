@@ -14,6 +14,20 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
+    /* unit test */
+    /*
+    NSString * expression = @"12.3 + 4.56 + 0.789";
+    NSDictionary * tree = [Calculator tokenizeAndParse:expression];
+    for (NSString * label in tree.allKeys)
+    {
+        NSLog(@"%@", label);
+        NSArray * t = [tree objectForKey:label];
+        for (NSDictionary * e in t)
+        {
+            NSLog(@"%@", [[e allKeys] objectAtIndex:0]);
+        }
+    }
+    */
 }
 
 - (void)setRepresentedObject:(id)representedObject {

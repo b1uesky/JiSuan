@@ -9,11 +9,11 @@
 			<string></string>
 			<key>NSSendTypes</key>
 			<array>
-				<string>NSStringPboardType</string>
+				<string>NSPasteboardTypeString</string>
 			</array>
 			<key>NSReturnTypes</key>
 			<array>
-				<string>NSStringPboardType</string>
+				<string>NSPasteboardTypeString</string>
 			</array>
 			<key>NSMenuItem</key>
 			<dict>
