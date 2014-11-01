@@ -2,6 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSMessage</key>
+			<string></string>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+			<key>NSReturnTypes</key>
+			<array>
+				<string>NSStringPboardType</string>
+			</array>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>JiSuan</string>
+			</dict>
+		</dict>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
