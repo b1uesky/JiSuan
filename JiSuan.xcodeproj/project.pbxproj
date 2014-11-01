@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		754F68831A04EF6000BC5620 /* Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = 754F68821A04EF6000BC5620 /* Parse.m */; };
 		7598226E1A04B45C00A336BD /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7598226D1A04B45C00A336BD /* Calculator.m */; };
 		75C91EA81A049A65003BE9C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C91EA71A049A65003BE9C6 /* AppDelegate.m */; };
 		75C91EAA1A049A65003BE9C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C91EA91A049A65003BE9C6 /* main.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		754F68811A04EF6000BC5620 /* Parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parse.h; sourceTree = "<group>"; };
+		754F68821A04EF6000BC5620 /* Parse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parse.m; sourceTree = "<group>"; };
 		7598226C1A04B45C00A336BD /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
 		7598226D1A04B45C00A336BD /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		75C91EA11A049A65003BE9C6 /* JiSuan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JiSuan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +91,8 @@
 				75C91EAC1A049A65003BE9C6 /* ViewController.m */,
 				7598226C1A04B45C00A336BD /* Calculator.h */,
 				7598226D1A04B45C00A336BD /* Calculator.m */,
+				754F68811A04EF6000BC5620 /* Parse.h */,
+				754F68821A04EF6000BC5620 /* Parse.m */,
 				75C91EAE1A049A65003BE9C6 /* Images.xcassets */,
 				75C91EB01A049A66003BE9C6 /* Main.storyboard */,
 				75C91EA41A049A65003BE9C6 /* Supporting Files */,
@@ -222,6 +227,7 @@
 			files = (
 				75C91EAD1A049A65003BE9C6 /* ViewController.m in Sources */,
 				7598226E1A04B45C00A336BD /* Calculator.m in Sources */,
+				754F68831A04EF6000BC5620 /* Parse.m in Sources */,
 				75C91EAA1A049A65003BE9C6 /* main.m in Sources */,
 				75C91EA81A049A65003BE9C6 /* AppDelegate.m in Sources */,
 			);

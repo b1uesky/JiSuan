@@ -8,125 +8,115 @@
 
 #import "Calculator.h"
 
-@implementation Calculator
+@interface Calculator()
+{
+    
+}
 
+@end
+
+@implementation Calculator
 
 + (NSString *) calculate: (NSString *)s
 {
     return nil;
 }
 
-+ (NSDictionary *) tokenizeAndParse: (NSString *)s
++ (double) evaluate: (NSDictionary *)e
 {
-    NSMutableArray * tokens = [Calculator tokenize:s];
-    
-    NSArray * temp = [Calculator expression:tokens atTop:true];
-    if (temp)
+    for (NSString * operator in [[e allKeys] objectAtIndex:0])
     {
-        return [temp objectAtIndex:0];
-    }
-    return nil;
-}
-
-+ (NSMutableArray *) tokenize: (NSString *)s
-{
-    NSString * separateString = @" "; //@"+-*/^%(),";
-    NSCharacterSet * separators = [NSCharacterSet characterSetWithCharactersInString: separateString];
-    NSMutableArray * tokens = [[NSMutableArray alloc] initWithArray:
-                               [s componentsSeparatedByCharactersInSet:separators]];
-    /*
-     for (int i = 0; i < [tokens count]; i++)
-     {
-     NSString * token = [tokens objectAtIndex:i];
-     NSLog(token);
-     }
-     */
-    return tokens;
-}
-
-
-+ (NSArray *) expression: (NSMutableArray *)tmp atTop: (BOOL)top
-{
-    NSMutableArray * tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];;
-    
-    NSArray * temp = [Calculator leftExpression:tokens atTop:false];
-    
-    // parse left correctly
-    if (temp)
-    {
-        NSDictionary * tree1 = [temp objectAtIndex:0];
-        NSMutableArray * tokens = [temp objectAtIndex:1];
-        
-        // for +
-        if ([tokens count] > 0 && [@"+" isEqualToString: [tokens objectAtIndex:0]])
+        NSArray * children = [e objectForKey:operator];
+        if ([@"Plus" isEqualToString:operator])
         {
-            [tokens removeObjectAtIndex:0];
-            temp = [Calculator expression:tokens atTop:false];
-            if (temp)
-            {
-                NSDictionary * tree2 = [temp objectAtIndex:0];
-                tokens = [temp objectAtIndex:1];
-                return @[ @{@"Plus" : @[tree1, tree2]},
-                          tokens];
-            }
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+            return (e1 + e2);
         }
-        
-        else
+        else if ([@"Minus" isEqualToString:operator])
         {
-            return temp;
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+            return (e1 - e2);
         }
-    }
-    
-    
-    return nil;
-}
-
-+ (NSArray *) leftExpression: (NSMutableArray *)tmp atTop: (BOOL)top
-{
-    // for number
-    NSMutableArray * tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];;
-    if ([tokens count] > 0 && [Calculator isNumber:[tokens objectAtIndex:0]])
-    {
-        double number = [[tokens objectAtIndex:0] doubleValue];
-        [tokens removeObjectAtIndex:0];
-        if (!top || [tokens count] == 0)
+        else if ([@"Mult" isEqualToString:operator])
         {
-             return @[ @{@"Number" : @[[NSNumber numberWithDouble:number]]},
-                            tokens];
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+            return (e1 * e2);
         }
-    }
-    
-    // for (exp)
-    tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];;
-    if ([@"(" isEqualToString: [tokens objectAtIndex:0]])
-    {
-        [tokens removeObjectAtIndex:0];
-        NSArray * temp = [Calculator expression:tokens atTop:false];
-        if (temp)
+        else if ([@"Divide" isEqualToString:operator])
         {
-            NSDictionary * tree = [temp objectAtIndex:0];
-            tokens = [temp objectAtIndex:1];
-            if ([tokens count] > 0 && [@")" isEqualToString: [tokens objectAtIndex:0]])
-            {
-                [tokens removeObjectAtIndex:0];
-                if (!top || [tokens count] == 0)
-                {
-                    return @[ @{@"Paren" : tree},
-                              tokens ];
-                }
-            }
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+            return (e1 / e2);
+        }
+        else if ([@"Mod" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+            return fmod(e1, e2);
+        }
+        else if ([@"Rt" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+            return pow(e1, 1.0/e2);
+        }
+        else if ([@"Pow" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+            return pow(e1, e2);
+        }
+        else if ([@"Max" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+            return fmax(e1, e2);
+        }
+        else if ([@"Min" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+            return fmin(e1, e2);
+        }
+        else if ([@"Paren" isEqualToString:operator])
+        {
+            return [Calculator evaluate:[children objectAtIndex:0]];
+        }
+        else if ([@"Sqrt" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return sqrt(e1);
+        }
+        else if ([@"Abs" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return fabs(e1);
+        }
+        else if ([@"Neg" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return -e1;
+        }
+        else if ([@"Ceil" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return ceil(e1);
+        }
+        else if ([@"Floor" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return floor(e1);
+        }
+        else if ([@"Round" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return round(e1);
         }
     }
-    
-    return nil;
-}
-
-+ (BOOL) isNumber: (NSString *) s
-{
-    NSPredicate *numberPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES '^(-((0|[1-9][0-9]*)\.?[0-9]+)|((0|[1-9][0-9]*)\.?[0-9]+))$'"];
-    if([numberPredicate evaluateWithObject:s])
-        return true;
-    return false;
+    return MAXFLOAT;
 }
 
 @end

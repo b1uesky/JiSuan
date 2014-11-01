@@ -1,5 +1,5 @@
 //
-//  Calculator.h
+//  Parse.h
 //  JiSuan
 //
 //  Created by Jeremy_Luo on 11/1/14.
@@ -7,11 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Parse.h"
 
-@interface Calculator : NSObject
+@interface Parse : NSObject
 
-+ (NSString *) calculate: (NSString *)s;
-
++ (NSDictionary *) tokenizeAndParse: (NSString *)s;
 
 @end

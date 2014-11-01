@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Calculator.h"
+#import "Parse.h"
 
 @interface ViewController : NSViewController
 

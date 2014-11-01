@@ -15,9 +15,10 @@
 
     // Do any additional setup after loading the view.
     /* unit test */
-    /*
-    NSString * expression = @"12.3 + 4.56 + 0.789";
-    NSDictionary * tree = [Calculator tokenizeAndParse:expression];
+    
+    NSString * expression = @"rt ( 22 , sqrt ( 12.3 ) ) + ( 4.56 + 0.789 )";
+    expression = @"3 + 4 * 5 ^ 1";
+    NSDictionary * tree = [Parse tokenizeAndParse:expression];
     for (NSString * label in tree.allKeys)
     {
         NSLog(@"%@", label);
@@ -27,7 +28,7 @@
             NSLog(@"%@", [[e allKeys] objectAtIndex:0]);
         }
     }
-    */
+    
 }
 
 - (void)setRepresentedObject:(id)representedObject {
