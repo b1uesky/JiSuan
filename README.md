@@ -57,7 +57,7 @@ Selected text | output
 |Negate|-a|4|
 
 ### Developers
-@Shawdowyyyy  
+@Shadowyyyy  
 @B1ueSky  
 
 ###At last, thanks for all your STARs!
