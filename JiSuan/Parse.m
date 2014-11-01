@@ -81,76 +81,17 @@
 {
     NSMutableArray * tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
     
-    NSArray * temp = [Parse leftExpression:tokens atTop:false];
+    NSArray * temp = [Parse highPriorityExpression:tokens atTop:false];
     
-    // parse left correctly
+    // parse highPriorityExpression correctly
     if (temp)
     {
         NSDictionary * tree1 = [temp objectAtIndex:0];
         NSMutableArray * tokens = [temp objectAtIndex:1];
         
-        // for ^
-        NSMutableArray * tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
-        if ([tk count] > 0 && [@"^" isEqualToString: [tk objectAtIndex:0]])
-        {
-            [tk removeObjectAtIndex:0];
-            temp = [Parse expression:tk atTop:false];
-            if (temp)
-            {
-                NSDictionary * tree2 = [temp objectAtIndex:0];
-                tk = [temp objectAtIndex:1];
-                return @[ @{@"Pow" : @[tree1, tree2]},
-                          tk];
-            }
-        }
-        
-        // for *
-        tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
-        if ([tk count] > 0 && [@"*" isEqualToString: [tk objectAtIndex:0]])
-        {
-            [tk removeObjectAtIndex:0];
-            temp = [Parse expression:tk atTop:false];
-            if (temp)
-            {
-                NSDictionary * tree2 = [temp objectAtIndex:0];
-                tk = [temp objectAtIndex:1];
-                return @[ @{@"Mult" : @[tree1, tree2]},
-                          tk];
-            }
-        }
-        
-        // for /
-        tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
-        if ([tk count] > 0 && [@"/" isEqualToString: [tk objectAtIndex:0]])
-        {
-            [tk removeObjectAtIndex:0];
-            temp = [Parse expression:tk atTop:false];
-            if (temp)
-            {
-                NSDictionary * tree2 = [temp objectAtIndex:0];
-                tk = [temp objectAtIndex:1];
-                return @[ @{@"Divide" : @[tree1, tree2]},
-                          tk];
-            }
-        }
-        
-        // for %
-        tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
-        if ([tk count] > 0 && [@"%" isEqualToString: [tk objectAtIndex:0]])
-        {
-            [tk removeObjectAtIndex:0];
-            temp = [Parse expression:tk atTop:false];
-            if (temp)
-            {
-                NSDictionary * tree2 = [temp objectAtIndex:0];
-                tk = [temp objectAtIndex:1];
-                return @[ @{@"Mod" : @[tree1, tree2]},
-                          tk];
-            }
-        }
         
         // for +
-        tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
+        NSMutableArray * tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
         if ([tk count] > 0 && [@"+" isEqualToString: [tk objectAtIndex:0]])
         {
             [tk removeObjectAtIndex:0];
@@ -196,6 +137,87 @@
     
     return nil;
 }
+
++ (NSArray *) highPriorityExpression: (NSMutableArray *)tmp atTop: (BOOL)top
+{
+    NSMutableArray * tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
+    
+    NSArray * temp = [Parse leftExpression:tokens atTop:false];
+    
+    //parsed left correctly
+    if (temp)
+    {
+        NSDictionary * tree1 = [temp objectAtIndex:0];
+        NSMutableArray * tokens = [temp objectAtIndex:1];
+        
+        // for ^
+        NSMutableArray * tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
+        if ([tk count] > 0 && [@"^" isEqualToString: [tk objectAtIndex:0]])
+        {
+            [tk removeObjectAtIndex:0];
+            temp = [Parse highPriorityExpression:tk atTop:false];
+            if (temp)
+            {
+                NSDictionary * tree2 = [temp objectAtIndex:0];
+                tk = [temp objectAtIndex:1];
+                return @[ @{@"Pow" : @[tree1, tree2]},
+                          tk];
+            }
+        }
+        
+        // for *
+        tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
+        if ([tk count] > 0 && [@"*" isEqualToString: [tk objectAtIndex:0]])
+        {
+            [tk removeObjectAtIndex:0];
+            temp = [Parse highPriorityExpression:tk atTop:false];
+            if (temp)
+            {
+                NSDictionary * tree2 = [temp objectAtIndex:0];
+                tk = [temp objectAtIndex:1];
+                return @[ @{@"Mult" : @[tree1, tree2]},
+                          tk];
+            }
+        }
+        
+        // for /
+        tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
+        if ([tk count] > 0 && [@"/" isEqualToString: [tk objectAtIndex:0]])
+        {
+            [tk removeObjectAtIndex:0];
+            temp = [Parse highPriorityExpression:tk atTop:false];
+            if (temp)
+            {
+                NSDictionary * tree2 = [temp objectAtIndex:0];
+                tk = [temp objectAtIndex:1];
+                return @[ @{@"Divide" : @[tree1, tree2]},
+                          tk];
+            }
+        }
+        
+        // for %
+        tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
+        if ([tk count] > 0 && [@"%" isEqualToString: [tk objectAtIndex:0]])
+        {
+            [tk removeObjectAtIndex:0];
+            temp = [Parse highPriorityExpression:tk atTop:false];
+            if (temp)
+            {
+                NSDictionary * tree2 = [temp objectAtIndex:0];
+                tk = [temp objectAtIndex:1];
+                return @[ @{@"Mod" : @[tree1, tree2]},
+                          tk];
+            }
+        }
+        else{
+            return temp;
+        }
+        
+    }
+    return nil;
+    
+}
+
 
 + (NSArray *) leftExpression: (NSMutableArray *)tmp atTop: (BOOL)top
 {
