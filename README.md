@@ -56,3 +56,9 @@ Selected text | output
 |Add|a + b|4|
 |Subtract|a - b|4|
 |Negate|-a|4|
+
+### Developers
+@Shawdowyyyy  (Ruan, Zhen-jie)  
+@B1ueSky      (Luo, Tian-you)  
+
+###At last, thanks for all your STARs!
