@@ -1,6 +1,6 @@
 # JiSuan
-> A Simple && Light-weight **inline** text calculator, which realeases your calculator.  
-> 你妈咪问你，挖掘机技术哪家强？  
+> A Simple && Light-weight **inline** text calculator, which realeases your hands.  
+> 妈咪问，挖掘机技术哪家强？  
 > 你说，中国山东找蓝翔！  
 
 ### OS Requirement:  
@@ -26,9 +26,10 @@
      (note: the shorcut should be globally unique, e.g. ctrl+cmd+J)
 ```
 ### Example
-Selected text | output
---------------|----------------
-  3 * 4 + 5   | 3 * 4 + 5 = 17
+|Selected text | output|
+|:--------------:|:----------------:|
+|3 * 4 + 5   | 3 * 4 + 5 = 17|
+|log(3*5+1, 4) | log(3*5+1, 4)= 2|
 
 ### Rules
 ```
