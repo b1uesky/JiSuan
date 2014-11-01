@@ -4,12 +4,11 @@
 > 你说，中国山东找蓝翔！  
 
 ### OS Requirement:  
-```
   - [x] Mac OS
   - [ ] Windows
   - [ ] Linus
   - [ ] Others
-```
+
 ### Installation
 ```
   1. Clone to your Mac  
@@ -23,7 +22,7 @@
 ```
   1. Select any mathematical expression which conforms to the rules  
   2. Right-click -> Services -> JiSuan  
-     or type the shortcut you define for JiSuan (recommand)
+     or type the shortcut you define for JiSuan (recommanded)
      (note: the shorcut should be globally unique, e.g. ctrl+cmd+J)
 ```
 ### Example
@@ -33,7 +32,7 @@ Selected text | output
 
 ### Rules
 ```
-  All selected expression should conform to the following rules,  
+  All selected expressions should conform to the following rules,  
   or it may lead to unexpected result.
 ```
 |Operation|Math Forumla|Priority|
@@ -58,7 +57,7 @@ Selected text | output
 |Negate|-a|4|
 
 ### Developers
-@Shawdowyyyy  (Ruan, Zhen-jie)  
-@B1ueSky      (Luo, Tian-you)  
+@Shawdowyyyy  
+@B1ueSky  
 
 ###At last, thanks for all your STARs!
