@@ -39,7 +39,7 @@
     
     //write the result string onto the paste board
     [pboard clearContents];
-    NSArray * output = @[[NSString stringWithFormat:@"%@%@%@", pboardString, @" = ", @"20"]];
+    NSArray * output = @[[NSString stringWithFormat:@"%@%@%@", pboardString, @" = ", newString]];
     [pboard writeObjects:output];
 }
 
@@ -47,19 +47,23 @@
 
 + (NSString *) calculate: (NSString *)s
 {
-    return @"";
     return [NSString stringWithFormat:@"%f", [Calculator evaluate: [Parse tokenizeAndParse:s]]];
 }
 
 + (double) evaluate: (NSDictionary *)e
 {
-    for (NSString * operator in [[e allKeys] objectAtIndex:0])
+    for (NSString * operator in [e allKeys])
     {
         NSArray * children = [e objectForKey:operator];
-        if ([@"Plus" isEqualToString:operator])
+        if ([@"Number" isEqualToString:operator])
+        {
+            return [[children objectAtIndex:0] doubleValue];
+        }
+        else if ([@"Plus" isEqualToString:operator])
         {
             double e1 = [Calculator evaluate:[children objectAtIndex:0]];
             double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+
             return (e1 + e2);
         }
         else if ([@"Minus" isEqualToString:operator])
@@ -110,6 +114,12 @@
             double e2 = [Calculator evaluate:[children objectAtIndex:1]];
             return fmin(e1, e2);
         }
+        else if ([@"Log" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            double e2 = [Calculator evaluate:[children objectAtIndex:1]];
+            return [Calculator log:e1 withBase:e2];
+        }
         else if ([@"Paren" isEqualToString:operator])
         {
             return [Calculator evaluate:[children objectAtIndex:0]];
@@ -144,8 +154,30 @@
             double e1 = [Calculator evaluate:[children objectAtIndex:0]];
             return round(e1);
         }
+        else if ([@"Fac" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return [Calculator factorial:(int)e1];
+        }
+
+        
     }
     return MAXFLOAT;
+}
+
++ (double) factorial: (int) x
+{
+    double result = 1;
+    for ( ; x > 0; x--)
+    {
+        result *= x;
+    }
+    return result;
+}
+
++ (double) log: (float)value withBase: (float)base
+{
+    return log10(value) / log10(base);
 }
 
 @end

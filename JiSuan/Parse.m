@@ -13,11 +13,12 @@
 + (NSDictionary *) tokenizeAndParse: (NSString *)s
 {
     NSMutableArray * tokens = [Parse tokenize:s];
+    /*
     for (NSString * token in tokens)
     {
         NSLog(@"%@", token);
     }
-    
+    */
     NSArray * temp = [Parse expression:tokens atTop:true];
     if (temp)
     {
@@ -28,7 +29,7 @@
 
 + (NSMutableArray *) tokenize: (NSString *)s
 {
-    NSString * separators = @"+-*/^%(), ";
+    NSString * separators = @"+-*/^%!(), ";
 
     NSInteger lengthOfSeparators = separators.length;
     NSMutableArray * tokens = [[NSMutableArray alloc] init];
@@ -176,6 +177,15 @@
                 return @[ @{@"Minus" : @[tree1, tree2]},
                           tk];
             }
+        }
+        
+        // for exp!
+        tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
+        if ([tk count] > 0 && [@"!" isEqualToString: [tk objectAtIndex:0]])
+        {
+            [tk removeObjectAtIndex:0];
+            return @[ @{@"Fac" : @[tree1]},
+                     tk];
         }
 
         else
@@ -363,7 +373,7 @@
         }
     }
     
-    // for rt(exp)
+    // for rt(exp, exp)
     tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
     if ([@"rt" isEqualToString: [tokens objectAtIndex:0]]
         && [@"(" isEqualToString: [tokens objectAtIndex:1]])
@@ -397,7 +407,7 @@
         }
     }
     
-    // for max(exp)
+    // for max(exp, exp)
     tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
     if ([@"max" isEqualToString: [tokens objectAtIndex:0]]
         && [@"(" isEqualToString: [tokens objectAtIndex:1]])
@@ -431,7 +441,7 @@
         }
     }
     
-    // for min(exp)
+    // for min(exp, exp)
     tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
     if ([@"min" isEqualToString: [tokens objectAtIndex:0]]
         && [@"(" isEqualToString: [tokens objectAtIndex:1]])
@@ -457,6 +467,40 @@
                         if (!top || [tokens count] == 0)
                         {
                             return @[ @{@"Min" : @[tree1, tree2]},
+                                      tokens ];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // for log(exp, exp)
+    tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
+    if ([@"log" isEqualToString: [tokens objectAtIndex:0]]
+        && [@"(" isEqualToString: [tokens objectAtIndex:1]])
+    {
+        [tokens removeObjectAtIndex:0];
+        [tokens removeObjectAtIndex:0];
+        NSArray * temp = [Parse expression:tokens atTop:false];
+        if (temp)
+        {
+            NSDictionary * tree1 = [temp objectAtIndex:0];
+            tokens = [temp objectAtIndex:1];
+            if ([@"," isEqualToString: [tokens objectAtIndex:0]])
+            {
+                [tokens removeObjectAtIndex:0];
+                temp = [Parse expression:tokens atTop:false];
+                if (temp)
+                {
+                    NSDictionary * tree2 = [temp objectAtIndex:0];
+                    tokens = [temp objectAtIndex:1];
+                    if ([@")" isEqualToString: [tokens objectAtIndex:0]])
+                    {
+                        [tokens removeObjectAtIndex:0];
+                        if (!top || [tokens count] == 0)
+                        {
+                            return @[ @{@"Log" : @[tree1, tree2]},
                                       tokens ];
                         }
                     }

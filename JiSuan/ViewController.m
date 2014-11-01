@@ -17,17 +17,9 @@
     /* unit test */
     /*
     NSString * expression = @"rt ( 22 , sqrt ( 12.3 ) ) + ( 4.56 + 0.789 )";
-    expression = @"3 + 4 * 5 ^ 1";
+    expression = @"3 + 4 * 5 ";
     NSDictionary * tree = [Parse tokenizeAndParse:expression];
-    for (NSString * label in tree.allKeys)
-    {
-        NSLog(@"%@", label);
-        NSArray * t = [tree objectForKey:label];
-        for (NSDictionary * e in t)
-        {
-            NSLog(@"%@", [[e allKeys] objectAtIndex:0]);
-        }
-    }
+    NSLog(@"%@",[Calculator calculate:expression]);
     */
 }
 
