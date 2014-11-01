@@ -138,7 +138,7 @@
     return nil;
 }
 
-+ (NSArray *) highPriorityExpression: (NSMutableArray *)tmp atTop: (BOOL)top
++ (NSArray *) ExtremePriorityExpression: (NSMutableArray *)tmp atTop: (BOOL)top
 {
     NSMutableArray * tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
     
@@ -155,7 +155,7 @@
         if ([tk count] > 0 && [@"^" isEqualToString: [tk objectAtIndex:0]])
         {
             [tk removeObjectAtIndex:0];
-            temp = [Parse highPriorityExpression:tk atTop:false];
+            temp = [Parse ExtremePriorityExpression:tk atTop:false];
             if (temp)
             {
                 NSDictionary * tree2 = [temp objectAtIndex:0];
@@ -164,9 +164,28 @@
                           tk];
             }
         }
+        else{
+            return temp;
+        }
+    }
+    return nil;
+}
+
++ (NSArray *) highPriorityExpression: (NSMutableArray *)tmp atTop: (BOOL)top
+{
+    NSMutableArray * tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
+    
+    NSArray * temp = [Parse ExtremePriorityExpression:tokens atTop:false];
+    
+    //parsed left correctly
+    if (temp)
+    {
+        NSDictionary * tree1 = [temp objectAtIndex:0];
+        NSMutableArray * tokens = [temp objectAtIndex:1];
+        
         
         // for *
-        tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
+        NSMutableArray * tk = [[NSMutableArray alloc] initWithArray:tokens copyItems:YES];
         if ([tk count] > 0 && [@"*" isEqualToString: [tk objectAtIndex:0]])
         {
             [tk removeObjectAtIndex:0];
