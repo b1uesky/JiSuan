@@ -16,9 +16,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    NSViewController *calculator;
-    calculator = [[NSViewController alloc] init];
+    Calculator * calculator = [[Calculator alloc] init];
     [NSApp setServicesProvider:calculator];
+    NSUpdateDynamicServices();
+
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

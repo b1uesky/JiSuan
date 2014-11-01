@@ -17,9 +17,38 @@
 
 @implementation Calculator
 
+-(void)calculateService: (NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error
+{
+    //Test for strings on the pasteboard.
+    NSArray *classes = [NSArray arrayWithObjects:[NSString class], nil];
+    NSDictionary *options = [NSDictionary dictionary];
+    
+    if(![pboard canReadObjectForClasses:classes options:options]){
+        *error = NSLocalizedString(@"Error: couldn't calculate text.", @"pboard couldn't give string.");
+        return;
+    }
+    
+    //get and calculate string
+    NSString *pboardString = [pboard stringForType:NSPasteboardTypeString];
+    NSString *newString = [Calculator calculate:pboardString];
+    
+    if(!newString){
+        *error = NSLocalizedString(@"Error: couldn't calculate text.", @"self couldn't calculate.");
+        return;
+    }
+    
+    //write the result string onto the paste board
+    [pboard clearContents];
+    NSArray * output = @[[NSString stringWithFormat:@"%@%@%@", pboardString, @" = ", @"20"]];
+    [pboard writeObjects:output];
+}
+
+
+
 + (NSString *) calculate: (NSString *)s
 {
-    return nil;
+    return @"";
+    return [NSString stringWithFormat:@"%f", [Calculator evaluate: [Parse tokenizeAndParse:s]]];
 }
 
 + (double) evaluate: (NSDictionary *)e

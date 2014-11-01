@@ -53,14 +53,14 @@
 				<string>JiSuan</string>
 			</dict>
 			<key>NSMessage</key>
-			<string></string>
+			<string>calculateService</string>
 			<key>NSReturnTypes</key>
 			<array>
-				<string>NSPasteboardTypeString</string>
+				<string>NSStringPboardType</string>
 			</array>
 			<key>NSSendTypes</key>
 			<array>
-				<string>NSPasteboardTypeString</string>
+				<string>NSStringPboardType</string>
 			</array>
 		</dict>
 	</array>

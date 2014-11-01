@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 #import "Parse.h"
 
 @interface Calculator : NSObject
 
 + (NSString *) calculate: (NSString *)s;
+-(void)calculateService: (NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
 
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Calculator.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
