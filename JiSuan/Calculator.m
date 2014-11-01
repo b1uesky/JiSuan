@@ -29,7 +29,7 @@
     }
     
     //get and calculate string
-    NSString *pboardString = [pboard stringForType:NSPasteboardTypeString];
+    NSString *pboardString = [pboard stringForType:NSStringPboardType];
     NSString *newString = [Calculator calculate:pboardString];
     
     if(!newString){
