@@ -50,12 +50,13 @@
 |Log|log(a, base)|1|
 |Factorial|a!|2|
 |Pow|base^exponent|2|
-|Multiply|a * b|3|
-|Divide|a / b|3|
-|Modulo|a % b|3|
-|Add|a + b|4|
-|Subtract|a - b|4|
-|Negate|-a|4|
+|Negate|-a|3|
+|Multiply|a * b|4|
+|Divide|a / b|4|
+|Modulo|a % b|4|
+|Add|a + b|5|
+|Subtract|a - b|5|
+
 
 ### Developers
 @Shadowyyyy   (Ruan, Zhen-jie)  
