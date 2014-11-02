@@ -379,13 +379,43 @@
 }
 
 /*
- * '^'
+ * '!'
  */
 + (NSArray *) priority2: (NSMutableArray *)tmp atTop: (BOOL)top
 {
+    // for exp!
+    NSMutableArray * tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
+    NSArray * temp = [Parse leftExpression:tokens atTop:false];
+    
+    if (temp)
+    {
+        NSDictionary * tree1 = [temp objectAtIndex:0];
+        tokens = [temp objectAtIndex:1];
+        //if ([tokkens count] > )
+        if ([tokens count] > 0 && [@"!" isEqualToString: [tokens objectAtIndex:0]])
+        {
+            [tokens removeObjectAtIndex:0];
+            return @[ @{@"Fac" : @[tree1]},
+                      tokens];
+        }
+        // no !
+        else
+        {
+            return temp;
+        }
+    }
+    
+    return nil;
+}
+
+/*
+ * '^'
+ */
++ (NSArray *) priority3: (NSMutableArray *)tmp atTop: (BOOL)top
+{
     NSMutableArray * tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
     
-    NSArray * temp = [Parse leftExpression:tokens atTop:false];
+    NSArray * temp = [Parse priority2:tokens atTop:false];
     
     //parsed left correctly
     if (temp)
@@ -398,7 +428,7 @@
         if ([tk count] > 0 && [@"^" isEqualToString: [tk objectAtIndex:0]])
         {
             [tk removeObjectAtIndex:0];
-            temp = [Parse priority2:tk atTop:false];
+            temp = [Parse priority3:tk atTop:false];
             if (temp)
             {
                 NSDictionary * tree2 = [temp objectAtIndex:0];
@@ -414,35 +444,6 @@
             return temp;
         }
     }
-    return nil;
-}
-
-/*
- * '!'
- */
-+ (NSArray *) priority3: (NSMutableArray *)tmp atTop: (BOOL)top
-{
-    // for exp!
-    NSMutableArray * tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
-    NSArray * temp = [Parse priority2:tokens atTop:false];
-    
-    if (temp)
-    {
-        NSDictionary * tree1 = [temp objectAtIndex:0];
-        tokens = [temp objectAtIndex:1];
-        if ([tokens count] > 0 && [@"!" isEqualToString: [tokens objectAtIndex:0]])
-        {
-            [tokens removeObjectAtIndex:0];
-            return @[ @{@"Fac" : @[tree1]},
-                      tokens];
-        }
-        // no !
-        else
-        {
-            return temp;
-        }
-    }
-    
     return nil;
 }
 
