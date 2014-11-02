@@ -49,13 +49,13 @@
 |Round|round(a)|1|
 |Log|log(a, base)|1|
 |Factorial|a!|2|
-|Pow|base^exponent|2|
-|Negate|-a|3|
-|Multiply|a * b|4|
-|Divide|a / b|4|
-|Modulo|a % b|4|
-|Add|a + b|5|
-|Subtract|a - b|5|
+|Pow|base^exponent|3|
+|Negate|-a|4|
+|Multiply|a * b|5|
+|Divide|a / b|5|
+|Modulo|a % b|5|
+|Add|a + b|6|
+|Subtract|a - b|6|
 
 
 ### Developers
