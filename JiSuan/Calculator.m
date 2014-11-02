@@ -8,13 +8,6 @@
 
 #import "Calculator.h"
 
-@interface Calculator()
-{
-    
-}
-
-@end
-
 @implementation Calculator
 
 -(void)calculateService: (NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error

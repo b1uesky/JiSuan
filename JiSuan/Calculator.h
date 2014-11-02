@@ -12,8 +12,8 @@
 
 @interface Calculator : NSObject
 
-+ (NSString *) calculate: (NSString *)s;
 -(void)calculateService: (NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error;
++ (NSString *) calculate: (NSString *)s;
 
 
 @end

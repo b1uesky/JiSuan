@@ -14,13 +14,7 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
-    /* unit test */
-    /*
-    NSString * expression = @"rt ( 22 , sqrt ( 12.3 ) ) + ( 4.56 + 0.789 )";
-    expression = @"3 + 4 * 5 ";
-    NSDictionary * tree = [Parse tokenizeAndParse:expression];
-    NSLog(@"%@",[Calculator calculate:expression]);
-    */
+    
 }
 
 - (void)setRepresentedObject:(id)representedObject {

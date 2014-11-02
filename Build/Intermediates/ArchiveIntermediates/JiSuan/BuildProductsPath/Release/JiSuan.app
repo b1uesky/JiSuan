@@ -1,0 +1,1 @@
+/Users/Jeremy_luo/Documents/XCode/JiSuan/Build/Intermediates/ArchiveIntermediates/JiSuan/InstallationBuildProductsLocation/Applications/JiSuan.app
