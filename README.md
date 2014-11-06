@@ -1,7 +1,7 @@
 # JiSuan
 > A Simple && Light-weight **inline** text calculator, which realeases your hands.  
 > 妈咪问，挖掘机技术哪家强？  
-> 你说，中国山东找蓝翔！  
+> 爸爸说，中国山东找蓝翔！  
 
 ### OS Requirement:  
   - [x] Mac OS
@@ -57,6 +57,12 @@
 |Add|a + b|6|
 |Subtract|a - b|6|
 
+### Future extensions
+```
+  1. support variables in mathematical expressions
+  2. show calculation steps
+  3. add more operations
+```
 
 ### Developers
 @Shadowyyyy   (Ruan, Zhen-jie)  
