@@ -239,6 +239,151 @@
         }
     }
     
+    // for sin(exp)
+    tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
+    if ([@"sin" isEqualToString: [tokens objectAtIndex:0]]
+        && [@"(" isEqualToString: [tokens objectAtIndex:1]])
+    {
+        [tokens removeObjectAtIndex:0];
+        [tokens removeObjectAtIndex:0];
+        NSArray * temp = [Parse expression:tokens atTop:false];
+        if (temp)
+        {
+            NSDictionary * tree = [temp objectAtIndex:0];
+            tokens = [temp objectAtIndex:1];
+            if ([@")" isEqualToString: [tokens objectAtIndex:0]])
+            {
+                [tokens removeObjectAtIndex:0];
+                if (!top || [tokens count] == 0)
+                {
+                    return @[ @{@"Sin" : @[tree]},
+                              tokens ];
+                }
+            }
+        }
+    }
+    
+    // for asin(exp)
+    tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
+    if ([@"asin" isEqualToString: [tokens objectAtIndex:0]]
+        && [@"(" isEqualToString: [tokens objectAtIndex:1]])
+    {
+        [tokens removeObjectAtIndex:0];
+        [tokens removeObjectAtIndex:0];
+        NSArray * temp = [Parse expression:tokens atTop:false];
+        if (temp)
+        {
+            NSDictionary * tree = [temp objectAtIndex:0];
+            tokens = [temp objectAtIndex:1];
+            if ([@")" isEqualToString: [tokens objectAtIndex:0]])
+            {
+                [tokens removeObjectAtIndex:0];
+                if (!top || [tokens count] == 0)
+                {
+                    return @[ @{@"Asin" : @[tree]},
+                              tokens ];
+                }
+            }
+        }
+    }
+    
+    // for cos(exp)
+    tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
+    if ([@"cos" isEqualToString: [tokens objectAtIndex:0]]
+        && [@"(" isEqualToString: [tokens objectAtIndex:1]])
+    {
+        [tokens removeObjectAtIndex:0];
+        [tokens removeObjectAtIndex:0];
+        NSArray * temp = [Parse expression:tokens atTop:false];
+        if (temp)
+        {
+            NSDictionary * tree = [temp objectAtIndex:0];
+            tokens = [temp objectAtIndex:1];
+            if ([@")" isEqualToString: [tokens objectAtIndex:0]])
+            {
+                [tokens removeObjectAtIndex:0];
+                if (!top || [tokens count] == 0)
+                {
+                    return @[ @{@"Cos" : @[tree]},
+                              tokens ];
+                }
+            }
+        }
+    }
+    
+    // for acos(exp)
+    tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
+    if ([@"acos" isEqualToString: [tokens objectAtIndex:0]]
+        && [@"(" isEqualToString: [tokens objectAtIndex:1]])
+    {
+        [tokens removeObjectAtIndex:0];
+        [tokens removeObjectAtIndex:0];
+        NSArray * temp = [Parse expression:tokens atTop:false];
+        if (temp)
+        {
+            NSDictionary * tree = [temp objectAtIndex:0];
+            tokens = [temp objectAtIndex:1];
+            if ([@")" isEqualToString: [tokens objectAtIndex:0]])
+            {
+                [tokens removeObjectAtIndex:0];
+                if (!top || [tokens count] == 0)
+                {
+                    return @[ @{@"Acos" : @[tree]},
+                              tokens ];
+                }
+            }
+        }
+    }
+    
+    // for tan(exp)
+    tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
+    if ([@"tan" isEqualToString: [tokens objectAtIndex:0]]
+        && [@"(" isEqualToString: [tokens objectAtIndex:1]])
+    {
+        [tokens removeObjectAtIndex:0];
+        [tokens removeObjectAtIndex:0];
+        NSArray * temp = [Parse expression:tokens atTop:false];
+        if (temp)
+        {
+            NSDictionary * tree = [temp objectAtIndex:0];
+            tokens = [temp objectAtIndex:1];
+            if ([@")" isEqualToString: [tokens objectAtIndex:0]])
+            {
+                [tokens removeObjectAtIndex:0];
+                if (!top || [tokens count] == 0)
+                {
+                    return @[ @{@"Tan" : @[tree]},
+                              tokens ];
+                }
+            }
+        }
+    }
+    
+    // for atan(exp)
+    tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
+    if ([@"atan" isEqualToString: [tokens objectAtIndex:0]]
+        && [@"(" isEqualToString: [tokens objectAtIndex:1]])
+    {
+        [tokens removeObjectAtIndex:0];
+        [tokens removeObjectAtIndex:0];
+        NSArray * temp = [Parse expression:tokens atTop:false];
+        if (temp)
+        {
+            NSDictionary * tree = [temp objectAtIndex:0];
+            tokens = [temp objectAtIndex:1];
+            if ([@")" isEqualToString: [tokens objectAtIndex:0]])
+            {
+                [tokens removeObjectAtIndex:0];
+                if (!top || [tokens count] == 0)
+                {
+                    return @[ @{@"Atan" : @[tree]},
+                              tokens ];
+                }
+            }
+        }
+    }
+
+    
     // for rt(exp, exp)
     tokens = [[NSMutableArray alloc] initWithArray:tmp copyItems:YES];
     if ([@"rt" isEqualToString: [tokens objectAtIndex:0]]

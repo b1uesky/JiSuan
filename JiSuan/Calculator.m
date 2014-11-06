@@ -157,7 +157,36 @@
             double e1 = [Calculator evaluate:[children objectAtIndex:0]];
             return [Calculator factorial:(int)e1];
         }
-
+        else if ([@"Sin" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return sin(e1);
+        }
+        else if ([@"Asin" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return asin(e1);
+        }
+        else if ([@"Cos" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return cos(e1);
+        }
+        else if ([@"Acos" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return acos(e1);
+        }
+        else if ([@"Tan" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return tan(e1);
+        }
+        else if ([@"Atan" isEqualToString:operator])
+        {
+            double e1 = [Calculator evaluate:[children objectAtIndex:0]];
+            return atan(e1);
+        }
         
     }
     return MAXFLOAT;
