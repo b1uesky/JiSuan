@@ -39,15 +39,7 @@
 |Operation|Math Forumla|Priority|
 |:--------------:|:----------------:|:-:|
 |Parenthesis|(a)|1|
-|2nd Root|sqrt(a)|1|
-|nth Root|rt(a, n)|1|
-|Absolute|abs(a)|1|
-|Max|max(a, b)|1|
-|Min|min(a, b)|1|
-|Ceil|ceil(a)|1|
-|Floor|floor(a)|1|
-|Round|round(a)|1|
-|Log|log(a, base)|1|
+|Functions|f()|1|
 |Factorial|a!|2|
 |Pow|base^exponent|3|
 |Negate|-a|4|
@@ -56,6 +48,25 @@
 |Modulo|a % b|5|
 |Add|a + b|6|
 |Subtract|a - b|6|
+
+### Functions
+|Function|Math Formula|
+|:--------------:|:----------------:|
+|2nd Root|sqrt(a)|
+|nth Root|rt(a, n)|
+|Absolute|abs(a)|
+|Max|max(a, b)|
+|Min|min(a, b)|
+|Ceil|ceil(a)|
+|Floor|floor(a)|
+|Round|round(a)|
+|Log|log(a, base)|
+|Sine|sin(a)|
+|Inverse Sine|asin(a)|
+|Cosine|cos(a)|
+|Inverse Cosine|acos(a)|
+|Tangent|tan(a)|
+|Inverse Tangent|atan(a)|
 
 ### Future extensions
 ```
